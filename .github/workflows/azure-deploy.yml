@@ -65,6 +65,8 @@ jobs:
       uses: azure/container-apps-deploy-action@v2
       with:
         acrName: ${{ env.REGISTRY_NAME }}
+        acrUsername: ${{ secrets.REGISTRY_USERNAME }}
+        acrPassword: ${{ secrets.REGISTRY_PASSWORD }}
         containerAppName: ${{ env.AZURE_CONTAINER_APP }}
         resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
         imageToDeploy: ${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
