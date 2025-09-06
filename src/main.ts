@@ -29,6 +29,8 @@ async function bootstrap() {
     },
   });
 
-  await app.listen(AppModule.port);
+  await app.listen(AppModule.port, '0.0.0.0');
+  console.log(`🚀 Application is running on: http://0.0.0.0:${AppModule.port}`);
+  console.log(`📚 Swagger documentation: http://0.0.0.0:${AppModule.port}/api-docs`);
 }
 bootstrap();
