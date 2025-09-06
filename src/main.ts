@@ -17,6 +17,17 @@ async function bootstrap() {
     // Enable CORS for all origins (helpful for testing)
     app.enableCors();
 
+    // Simple health check endpoint
+    app.getHttpAdapter().get('/health', (req, res) => {
+      console.log('💚 Health check accessed');
+      res.json({
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        port: port,
+        env: process.env.NODE_ENV || 'development'
+      });
+    });
+
     // Redirect root path to Swagger documentation
     app.getHttpAdapter().get('/', (req, res) => {
       console.log('📍 Root path accessed, redirecting to /api-docs');

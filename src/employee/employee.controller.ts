@@ -8,6 +8,19 @@ import { EmployeeService } from './employee.service';
 export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
+  @Get('health')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Health check endpoint',
+  })
+  public health(): { status: string; timestamp: string; port: string | number } {
+    return {
+      status: 'OK',
+      timestamp: new Date().toISOString(),
+      port: process.env.PORT || 3000,
+    };
+  }
+
   @Get('list')
   @UsePipes(ValidationPipe)
   @ApiResponse({
