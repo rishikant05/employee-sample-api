@@ -72,9 +72,14 @@ jobs:
         imageToDeploy: ${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
         targetPort: 3000
         ingress: external
+        containerAppEnvironment: ${{ env.AZURE_CONTAINER_ENVIRONMENT }}
+        location: centralindia
         environmentVariables: |
           PORT=3000
           NODE_ENV=production
+        containerPort: 3000
+        containerCpu: 0.25
+        containerMemory: 0.5Gi
     
     - name: ✅ Deployment Summary
       run: |
